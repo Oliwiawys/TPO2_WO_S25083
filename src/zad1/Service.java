@@ -13,17 +13,25 @@ import java.util.*;
 public class Service {
     private final String country;
     private final List<Codes> codes;
+    private final List<Locales> locales;
     private String code;
+    private String locale;
     private String currency;
     private String city;
 
     public Service(String country) {
         codes = new ArrayList<>();
+        locales = new ArrayList<>();
         this.country = country;
         createCodesList();
+        creatLocaleList();
         for (Codes value : codes) {
             if (value.getCountry().equals(country))
                 code = value.getCode();
+        }
+        for (Locales value : locales) {
+            if (value.getCountry().equals(country))
+                locale = value.getLocale().substring(value.getLocale().indexOf("_") + 1);
         }
     }
 
@@ -41,9 +49,22 @@ public class Service {
         }
     }
 
+    public void creatLocaleList() {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("Data/locale.csv"));
+            String line;
+            String[] countries;
+            while ((line = in.readLine()) != null) {
+                countries = line.split(";");
+                locales.add(new Locales(countries[0], countries[1]));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public String getWeather(String city) {
         this.city = city;
-        Locale locale = new Locale(country);
         URL url;
         try {
             url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + locale + "&APPID=485f7e0801f04adaf21a724a9ad0947a&units=metric");

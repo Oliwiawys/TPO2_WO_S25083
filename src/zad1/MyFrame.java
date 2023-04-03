@@ -73,7 +73,7 @@ public class MyFrame extends JFrame {
         NBPPanel.setPreferredSize(new Dimension(300, 100));
         NBPPanel.setBorder(BorderFactory.createTitledBorder("NBP Rates"));
 
-        JLabel nbp = new JLabel("Average exchange rate of PLN to " + Main.getS().getCode() + ": " + Main.getRate2());
+        JLabel nbp = new JLabel("Average exchange rate of " + Main.getS().getCode() + " to PLN: " + Main.getRate2());
         NBPPanel.add(nbp);
     }
 

@@ -1,8 +1,8 @@
 package zad1;
 
 public class Codes {
-    private String country;
-    private String code;
+    private final String country;
+    private final String code;
 
     public Codes(String country, String code) {
         this.country = country;

@@ -14,9 +14,9 @@ public class Main {
     private static Service s;
 
     public static void main(String[] args) {
-        s = new Service("Germany");
-        weatherJson = s.getWeather("Berlin");
-        rate1 = s.getRateFor("USD");
+        s = new Service("Italy");
+        weatherJson = s.getWeather("Rome");
+        rate1 = s.getRateFor("PLN");
         rate2 = s.getNBPRate();
         wiki = s.getWiki();
 
